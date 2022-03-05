@@ -42,14 +42,13 @@ pip3 install gffutils
 import gffutils
 fn = gffutils.example_filename('/Users/pmorrell/Downloads/Vunguiculata_IT97K-499-35_v1.2.gene.gff3')
 [// don't print] print(open(fn).read())
-db = gffutils.create_db(fn, dbfn='test.db', force=True, keep_order=True,merge_strategy='merge', sort_attribute_values=True)
 gene = db['Vigun11g226200.v1.2']
 [// needed to add the '.v1.2' to the each of the gene names to make the code below work!]
 genes = open('/Users/pmorrell/Downloads/ITKnoncore.txt','r').read().splitlines()
 [//] genes = open('/Users/pmorrell/Downloads/ITKcore.txt','r').read().splitlines()
 for i in genes:
     locus = db[i]
-    print(locus.chrom,locus.start, locus.end, sep='\t')
+    print(locus.chrom,locus.start, locus.end, locus.id, sep='\t')
 ```
 
 ### The BED file created is not sorted. Can accomplish that with the code below.
@@ -57,6 +56,7 @@ for i in genes:
 ```bash
 /panfs/roc/groups/9/morrellp/pmorrell/Workshop/Cowpea
 sort -k 1,1 -k2,2n noncore.txt >noncore_sort.bed
+sort -k 1,1 -k2,2n IT97K_only_noncore.bed >IT97K_only_noncore_sort.bed
 module load bcftools/1.9
 ```
 
@@ -128,4 +128,61 @@ bcftools view \
 /panfs/roc/groups/9/morrellp/shared/Datasets/Cowpea_Pan/core_sort.bed \
 --output-type z \
 --output-file core_IT97K_combined_genotype_snps_filtered.g.vcf.gz
+```
+
+
+```bash
+module load bcftools/1.10.2
+bcftools view \
+/panfs/roc/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/SNPs/IT97K_combined_genotype_snps_filtered.g.vcf.gz \
+--regions-file \
+/panfs/roc/groups/9/morrellp/shared/Datasets/Cowpea_Pan/IT97K_only_noncore_sort.bed \
+--output-type z \
+--output-file /panfs/roc/groups/9/morrellp/shared/Datasets/Cowpea_Pan/noncore_only_IT97K_combined_genotype_snps_filtered.g.vcf.gz
+```
+
+
+
+## Using the summary of output of VeP from Elaine's runs to plot variants by class
+
+```python3
+
+import pandas as pd
+df = pd.DataFrame({'Variant Set': ['Core - SNPs', 'Noncore - SNPs', 'Core - Indels', 'Noncore - Indels'], 'Synonymous': [89298, 100112, 0, 0], 'Inframe Indel': [0, 0, 3960, 6447], 'Missense': [81135, 170812, 0, 0], 'Stop Gain': [889, 3662, 196, 687], 'Start or Stop Change': [356, 836, 252, 297], 'Frameshift': [0, 0, 3672, 16908]})
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set(style='white')
+sns.set(rc = {'figure.figsize':(15,8)})
+
+
+df.set_index('Variant Set').plot(kind='bar', stacked=True, color=['steelblue', 'dodgerblue', 'salmon', 'darkred', 'red', 'firebrick'])
+```
+
+* 5 March 2022, continuing analysis on additional set of genes
+
+## There are more stop gains and missense variants in noncore genes. This could \
+## result from reduced purifying selection, but it could also be due to poorer \
+## annotation or the inclusion of pseudogenes in the noncore annotations.
+## To reduce the difference in quality of annotation, Tim and Maria suggested \
+## looking at variants that are core and noncore in IT97K.
+## Created a file with "noncore" genes that are present in IT97K. Using the spreadsheet \
+## "gene_correspondance_noncore.xlsx".
+
+```bash
+[//  remove all the blank lines in list pasted from the spreadsheet]
+[//  also needed to add `.v1.2` to the end of gene names]
+sed '/^[[:space:]]*$/d' IT97K_noncore.txt >IT97K_only_noncore.txt
+
+
+##  5 March 2022, running on IT97K only noncore genes
+```bash
+module load bcftools/1.10.2
+[// creating the VCF for IT97K only noncore; need file for SNPs and indels]
+bcftools view \
+/panfs/roc/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/SNPs/IT97K_combined_genotype_indels_filtered.g.vcf.gz \
+--regions-file \
+/panfs/roc/groups/9/morrellp/shared/Datasets/Cowpea_Pan/IT97K_only_noncore_sort.bed \
+--output-type z \
+--output-file /panfs/roc/groups/9/morrellp/shared/Datasets/Cowpea_Pan/noncore_only_IT97K_combined_genotype_snps_filtered.g.vcf.gz
 ```
