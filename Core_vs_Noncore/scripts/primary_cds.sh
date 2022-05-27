@@ -14,7 +14,7 @@ set -e
 set -o pipefail
 
 # User provided input arguments
-OUT_DIR=/panfs/roc/groups/9/morrellp/liang797/workspace/cowpea/
+OUT_DIR=/panfs/roc/groups/9/morrellp/liang797/workspace/cowpea/scripts/
 Primary_list=/panfs/roc/groups/9/morrellp/liang797/workspace/cowpea/files/Primary_NoPostfix.txt
 GFF3_for_genes=/panfs/roc/groups/9/morrellp/liang797/workspace/cowpea/files/Vunguiculata_IT97K-499-35_v1.2.gene.gff3
 
