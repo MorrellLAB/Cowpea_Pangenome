@@ -16,9 +16,9 @@ set -o pipefail
 # User provided input arguments
 search_items="/panfs/roc/groups/9/morrellp/shared/Datasets/Cowpea_Pan/ITKcore.txt"
 # Full filepath to output directory
-out_dir="/panfs/roc/groups/9/morrellp/liang797/workspace/cowepea"
+out_dir="/panfs/roc/groups/9/morrellp/liang797/workspace/cowpea"
 # Full filepath to reference fasta file
-reference_gff="/panfs/roc/groups/9/morrellp/liang797/workspace/cowepea/genes_only_gff_Vunguiculata_IT97K-499-35_v1.txt"
+reference_gff="/panfs/roc/groups/9/morrellp/liang797/workspace/cowpea/genes_only_gff_Vunguiculata_IT97K-499-35_v1.txt"
 
 #-----------------
 # Grep for desired  items and gets the first third and fourth column 
