@@ -15,7 +15,7 @@ def get_bed_cds(genes, db, name):
         for gene in genes:
             length = len(gene)
             if gene[0:length] == str(feature.id)[0:length]:
-                fn.write(feature.chrom + '\t' + feature.featuretype + '\t' + str(feature.start) + '\t' + str(feature.stop) + '\t' + str(feature.id) + '\n')
+                fn.write(feature.chrom + '\t' +  str(feature.start) + '\t' + str(feature.stop) + '\t'  + feature.featuretype + '\t' + str(feature.id) +'\n')
     fn.close()
 
 

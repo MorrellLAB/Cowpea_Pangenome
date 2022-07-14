@@ -12,7 +12,7 @@ def get_bed(genes, db, name):
     fn = open(name, "w+")
     for i in genes:
         locus = db[i]
-        fn.write(locus.chrom + '\t' + locus.featuretype + '\t' + str(locus.start) + '\t' + str(locus.end) + '\t' + str(locus.id) + '\n')
+        fn.write(locus.chrom + '\t' +  str(locus.start) + '\t' + str(locus.stop) + '\t'  + locus.featuretype + '\t' + str(locus.id) + '\n')
     fn.close()
 
 
