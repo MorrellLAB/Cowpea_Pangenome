@@ -16,7 +16,7 @@ def get_bed(genes, db, name):
     fn.close()
 
 
-# reads the genes from the core or non-core list
+# reads the genes from the core or non-core header list
 def get_genes(path_genes):
     genes = open(path_genes, 'r').read().splitlines()
     return genes
@@ -24,20 +24,25 @@ def get_genes(path_genes):
 
 # opens the file provided and reads the content into a database
 def read_to_database(path_annotation):
-    gff3 = gf.example_filename(path_annotation)
-    db = gf.create_db(gff3, dbfn='gff3.db', force=True, keep_order=True, merge_strategy='merge',
-                      sort_attribute_values=True)
+    db = gf.create_db(path_annotation, ':memory:')
     return db
 
 
-# genes : core or non-core
-# annotation : GFF files
+# path_genes: Path to the gene header list
+# path_annotation: Path to the GFF reference file
+# output_name: path and name of the output file
 def main(path_genes, path_annotation, output_name):
     """Main function."""
-    db = read_to_database(path_annotation)
-    genes = get_genes(path_genes)
-    get_bed(genes, db, output_name)
+    # Creates the database and prepare the list of genes for creating the bed file
 
+    # Construct the database
+    db = read_to_database(path_annotation)
+
+    # Read the core / non-core genes from file
+    genes = get_genes(path_genes)
+
+    # Construct the output file
+    get_bed(genes, db, output_name)
 
 # checks if the program has correct numbers of arguments
 if len(sys.argv) <= 3:

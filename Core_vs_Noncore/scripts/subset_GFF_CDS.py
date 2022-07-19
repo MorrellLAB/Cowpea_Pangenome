@@ -18,8 +18,7 @@ def get_bed_cds(genes, db, name):
                 fn.write(feature.chrom + '\t' +  str(feature.start) + '\t' + str(feature.stop) + '\t'  + feature.featuretype + '\t' + str(feature.id) +'\n')
     fn.close()
 
-
-# reads the genes from the core or noncore list
+# reads the genes from the core or noncore header list
 def get_genes(path_genes):
     genes = open(path_genes, 'r').read().splitlines()
     return genes
@@ -31,8 +30,9 @@ def read_to_database(path_annotation):
     return db
 
 
-# genes : core or non-core
-# annotation : GFF files
+# path_genes: Path to the gene header list
+# path_annotation: Path to the GFF reference file
+# output_name: path and name of the output file
 def main(path_genes, path_annotation, output_name):
     """Main function."""
     # Creates the database and prepare the list of genes for creating the bed file
@@ -53,9 +53,6 @@ if len(sys.argv) <= 3:
     1) Full path to list of genes to cut from GFF3
     2) Full path to the GFF3 
     3) Name of the output file""")
-    # print("First file:" + sys.argv[1])
-    # print("Second file:" + sys.argv[2])
-    # print("Third file:" + sys.argv[3])
     exit(1)
 else:
     main(sys.argv[1], sys.argv[2], sys.argv[3])
