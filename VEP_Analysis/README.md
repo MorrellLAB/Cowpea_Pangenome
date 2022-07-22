@@ -18,7 +18,7 @@ Core and non-core genes were extracted from the IT97K assembly and VEP analysis 
 
 The following are a template and an example script used to run VEP:   
 - Template VEP script: `vep_template.sh` 
--  `!!! add example script !`
+- Example script: 
        
        
 # Files 
