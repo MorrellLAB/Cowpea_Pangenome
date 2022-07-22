@@ -26,8 +26,8 @@ The following are a template and an example script used to run VEP:
 - Noncore SNPs:  
 - Core indels:   
 - Noncore indels:
-- GFF assembly:
-- Reference fasta:
+- GFF assembly: `/panfs/roc/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/annotation/Vunguiculata_IT97K-499-35_v1.2.gene_exons.sort.gff3.gz`
+- Reference genome:
      
      
 # Results    
