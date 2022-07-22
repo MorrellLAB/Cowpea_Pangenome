@@ -1,4 +1,4 @@
-# Variant Effect Predictor (for Cowpea_Pangenome)
+# Variant Effect Predictor 
 
 Variant Effect Predictor (VEP) analysis was performed to determine the effects of SNPs and indels in both core and noncore genes
     
@@ -22,7 +22,7 @@ The following are a template and an example script used to run VEP:
        
        
 # Files 
-- Core SNPs:  
+- Core SNPs:  `will add soon`
 - Noncore SNPs:  
 - Core indels:   
 - Noncore indels:
