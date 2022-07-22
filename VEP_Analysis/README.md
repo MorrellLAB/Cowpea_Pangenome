@@ -17,7 +17,7 @@ Core and non-core genes were extracted from the IT97K assembly and VEP analysis 
 - Noncore indels   
 
 The following are a template and an example script used to run VEP:   
-- Template VEP script: `vep_template.sh` 
+- Template script: `vep_template.sh` 
 - Example script: 
        
        
