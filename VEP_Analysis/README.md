@@ -31,6 +31,6 @@ The following are a template and an example script used to run VEP:
      
      
 # Results    
-Data on SNPs and indels for core and noncore exons were plotted on a stacked bar chart to analyse the number of mutations at differing levels of severity. The code used to generate this plot is `vep_plot.py`
+Data on SNPs and indels for core and noncore exons was extracted from `add path to html ouput file` and were plotted on a stacked bar chart to analyse the number of mutations at differing levels of severity. The code used to generate this plot is `vep_plot.py`
 
 
