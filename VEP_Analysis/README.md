@@ -22,8 +22,8 @@ The following are a template and an example script used to run VEP:
        
        
 # Files 
-- Core SNPs: `/panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/ITKcore.txt`
-- Noncore SNPs: `/panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/ITKnoncore.txt`
+- Core SNPs: 
+- Noncore SNPs: 
 - Core indels:   
 - Noncore indels:
 - GFF assembly: `/panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/annotation/Vunguiculata_IT97K-499-35_v1.2.gene_exons.sort.gff3.gz`
