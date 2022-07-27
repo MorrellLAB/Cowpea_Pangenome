@@ -30,7 +30,10 @@ The following are a template and an example script used to run VEP:
 - Reference genome: `/panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/assembly/Vunguiculata_IT97K-499-35_v1.0.fa.gz`
      
      
-# Results    
+# Results   
+
+The .html summaries are in: `add link`     
+   
 Data on SNPs and indels for core and noncore exons was extracted from `add path to html ouput file` and were plotted on a stacked bar chart to analyse the number of mutations at differing levels of severity. The code used to generate this plot is `vep_plot.py`
 
 
