@@ -1,4 +1,4 @@
-Q# **File information**
+## **File information**
 
 #### **ITKCore.txt**
 * This textfile contains all of the gene ids for the core gene in the ITK sample with postfix.
