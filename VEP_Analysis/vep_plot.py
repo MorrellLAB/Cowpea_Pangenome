@@ -17,4 +17,5 @@ sns.set_palette("afmhot_r")
 
 df.set_index('Variant Set').plot(kind='bar', stacked=True, fontsize=18, edgecolor='none')
 plt.legend(fontsize=18)
+plt.xticks(rotation='horizontal')
 plt.savefig('cowpea_vep.png')
