@@ -1,5 +1,6 @@
 # Cowpea_Pangenome
-This repository includes code used for comparisons of core and noncore genes and for [VeP](https://uswest.ensembl.org/info/docs/tools/vep/index.html) (Variant Effect Predictor) analysis in the cowpea pan-genome project.
+
+## This repository includes code used for comparisons of core and noncore genes and for [VeP](https://uswest.ensembl.org/info/docs/tools/vep/index.html) (Variant Effect Predictor) analysis in the cowpea pan-genome project.
 
 The cowpea pangenome manuscript is available on [bioXriv](https://www.biorxiv.org).
 
