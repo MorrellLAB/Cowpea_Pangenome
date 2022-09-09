@@ -161,24 +161,24 @@ df.set_index('Variant Set').plot(kind='bar', stacked=True, color=['steelblue', '
 
 * 5 March 2022, continuing analysis on additional set of genes
 
-## There are more stop gains and missense variants in noncore genes. This could \
-## result from reduced purifying selection, but it could also be due to poorer \
-## annotation or the inclusion of pseudogenes in the noncore annotations.
-## To reduce the difference in quality of annotation, Tim and Maria suggested \
-## looking at variants that are core and noncore in IT97K.
-## Created a file with "noncore" genes that are present in IT97K. Using the spreadsheet \
-## "gene_correspondance_noncore.xlsx".
+* There are more stop gains and missense variants in noncore genes. This could \
+result from reduced purifying selection, but it could also be due to poorer \
+annotation or the inclusion of pseudogenes in the noncore annotations. \
+To reduce the difference in quality of annotation, Tim and Maria suggested \
+looking at variants that are core and noncore in IT97K. Created a file with \
+"noncore" genes that are present in IT97K. Using the spreadsheet \
+"gene_correspondance_noncore.xlsx".
 
 ```bash
-[//  remove all the blank lines in list pasted from the spreadsheet]
-[//  also needed to add `.v1.2` to the end of gene names]
+[//]:  remove all the blank lines in list pasted from the spreadsheet
+[//]: also needed to add `.v1.2` to the end of gene names
 sed '/^[[:space:]]*$/d' IT97K_noncore.txt >IT97K_only_noncore.txt
-
+```
 
 ##  5 March 2022, running on IT97K only noncore genes
 ```bash
 module load bcftools/1.10.2
-[// creating the VCF for IT97K only noncore; need file for SNPs and indels]
+[//]: creating the VCF for IT97K only noncore; need file for SNPs and indels
 bcftools view \
 /panfs/roc/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/SNPs/IT97K_combined_genotype_indels_filtered.g.vcf.gz \
 --regions-file \
