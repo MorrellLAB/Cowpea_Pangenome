@@ -3,9 +3,10 @@
 #   Plots core and noncore snps and indels from vep results
 #   Elaine Lee - Minneapolis, MN - Apr 3, 2022
 
+
 import pandas as pd
 
-df = pd.DataFrame({'Variant Set': ['SNPs in\nCore', 'SNPs in\nNoncore', 'Indels in\nCore', 'Indels in\nNoncore'], 'Synonymous': [89593, 101751, 0, 0], 'Inframe Indel': [0, 0, 3966, 6526], 'Missense': [81408, 173845, 0, 0], 'Start or Stop Change': [356, 853, 253, 261], 'Stop Gain': [891, 3740, 196, 701], 'Frameshift': [0, 0, 3698, 17267]})
+df = pd.DataFrame({'Variant Set': ['Core\nSNPs', 'Noncore\nSNPs', 'Core\nIndels', 'Noncore\nIndels'], 'Synonymous': [77150, 34112, 0, 0], 'Inframe Indel': [0, 0, 3543, 2407], 'Missense': [87414, 65308, 0, 0], 'Start or Stop Change': [326, 385, 67, 59], 'Stop Gain': [1426, 1669, 287, 298], 'Frameshift': [0, 0, 5945, 7329]})
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -16,5 +17,4 @@ sns.set_palette("afmhot_r")
 
 df.set_index('Variant Set').plot(kind='bar', stacked=True, fontsize=18, edgecolor='none')
 plt.legend(fontsize=18)
-plt.xticks(rotation='horizontal')
-plt.savefig('/Users/pmorrell/Desktop/cowpea_vep.pdf',dpi=300)
+plt.savefig('cowpea_vep.png')
