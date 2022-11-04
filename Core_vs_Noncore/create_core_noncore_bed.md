@@ -3,8 +3,8 @@
 ## Data files, including VCF are below
 [Google Drive](https://drive.google.com/drive/folders/1iQaLW4SLmN2lP7q4k3uovHK3SvsxGbVi)
 
-* For gene names length, use the primary transcript, already reported in the files from Stefano Lonardi
-* But, the GFF includes `.v1.2`in the 'ID' and the 'Parent' field but not in the 'Name' field
+* For the names of genes to consider for length estimates, use the list of primary transcript, already reported in the files from Stefano Lonardi.
+* But, the GFF includes `.v1.2`in the 'ID' and the 'Parent' field but not in the 'Name' field.
 * Nathan's core gene list has names that look like the examples below with no transcript ID but a version number
 Vigun01g000500.v1.2
 Vigun01g000700.v1.2
@@ -22,15 +22,16 @@ module load python3/3.9.3_anaconda2021.11_mamba
 pip install gffutils
 ```
 
+## Create new BED files using the subset_GFF.py code from Nathan
 * On UMN MSI working with the following files
 /panfs/jay/groups/9/morrellp/pmorrell/Workshop/Cowpea/IT97K_core_gene.txt
 /panfs/jay/groups/9/morrellp/pmorrell/Workshop/Cowpea/IT97K_noncore_gene.txt
 /panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/annotation/Vunguiculata_IT97K-499-35_v1.2.gene.gff3.gz
 
 ```bash
-python3 subset_GFF.py /panfs/jay/groups/9/morrellp/pmorrell/Workshop/Cowpea/IT97K_core_gene.txt /panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/annotation/Vunguiculata_IT97K-499-35_v1.2.gene.gff3.gz /panfs/jay/groups/9/morrellp/pmorrell/Workshop/IT97K_core_gene.bed 
+python3 subset_GFF.py /panfs/jay/groups/9/morrellp/pmorrell/Workshop/Cowpea/IT97K_core_gene.txt /panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/annotation/Vunguiculata_IT97K-499-35_v1.2.gene.gff3.gz /panfs/jay/groups/9/morrellp/pmorrell/Workshop/IT97K_core_gene.bed
 
-python3 subset_GFF.py  /panfs/jay/groups/9/morrellp/pmorrell/Workshop/Cowpea/IT97K_noncore_gene.txt /panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/annotation/Vunguiculata_IT97K-499-35_v1.2.gene.gff3.gz /panfs/jay/groups/9/morrellp/pmorrell/Workshop/IT97K_noncore_gene.bed 
+python3 subset_GFF.py  /panfs/jay/groups/9/morrellp/pmorrell/Workshop/Cowpea/IT97K_noncore_gene.txt /panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/annotation/Vunguiculata_IT97K-499-35_v1.2.gene.gff3.gz /panfs/jay/groups/9/morrellp/pmorrell/Workshop/IT97K_noncore_gene.bed
 
 awk '{print $3 - $2}' /Users/pmorrell/Desktop/IT97K_core_gene.bed  | datamash -R 2 count 1 sum 1 mean 1 median 1 sstdev 1 min 1 max 1
 [//]: 26026.00	109988075.00	4226.08	3292.00	4047.23	95.00	77528.00
@@ -43,8 +44,8 @@ awk '{print $3 - $2}' /Users/pmorrell/Desktop/IT97K_noncore_gene.bed | datamash 
 * SNPs & indels in core genes
 ```bash
 module load bedtools/2.29.2
-module load pigz/2.4  
-cd /panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan 
+module load pigz/2.4
+cd /panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan
 bedtools intersect -header -a /panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/SNPs/IT97K_combined_genotype_snps_filtered.g.vcf.gz \
 -b /panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan/IT97K_core_gene.bed.gz | pigz >core_IT97K_combined_genotype_snps_filtered.g.vcf.gz
 
@@ -57,7 +58,7 @@ bedtools intersect -header -a /panfs/jay/groups/9/morrellp/shared/Datasets/Cowpe
 bedtools intersect -header -a /panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan/VunguiculataIT97K-499-35_v1.2/SNPs/IT97K_combined_genotype_indels_filtered.g.vcf.gz \
 -b /panfs/jay/groups/9/morrellp/shared/Datasets/Cowpea_Pan/IT97K_noncore_gene.bed.gz | pigz > noncore_IT97K_combined_genotype_indels_filtered.g.vcf.gz
 
-[//]: Find the number of variants (SNPs and indels) in core and noncore genes 
+[//]: Find the number of variants (SNPs and indels) in core and noncore genes
 zgrep -v '#' core_IT97K_combined_genotype_snps_filtered.g.vcf.gz | wc -l
 >>>702073
 zgrep -v '#' core_IT97K_combined_genotype_indels_filtered.g.vcf.gz | wc -l
